@@ -1,0 +1,19 @@
+@import '../../node_modules/material-design-icons-iconfont/dist/material-design-icons.css';
+
+
+
+
+::selection {
+  //background-color: $accent;
+  color: #fff;
+}
+body {
+  font-size: 16px;
+  min-width: 320px;
+  position: relative;
+  line-height: 1.65;
+  overflow-x: hidden;
+  background-color: red;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
