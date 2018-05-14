@@ -1,16 +1,27 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import LoadImage from '@/components/LoadImage'
-import EditeMap from '@/components/EditeMap'
+import Vue from 'vue';
+import Router from 'vue-router';
+import LoadImage from '@/components/LoadImage';
+import EditeMap from '@/components/EditeMap';
 
-Vue.use(Router)
+Vue.use(Router);
+
+import { store } from '../store';
 
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'LoadImage',
-      component: LoadImage
+      component: LoadImage,
+      beforeEnter: (to, from, next) => {
+        if(store.state.isImageLoad) {
+          window.app.$refs.mainComponent.modManage('returnToLoadImagePage');
+          store.commit('setCurrentMod', 'INIT_MODE');
+          document.getElementsByClassName('app-container')[0].classList.remove('editeModeStyle');
+        }
+
+        next();
+      }
     },
     {
       path: '/addMap',
@@ -18,4 +29,4 @@ export default new Router({
       component: EditeMap
     }
   ]
-})
+});

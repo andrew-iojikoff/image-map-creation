@@ -23,31 +23,32 @@
 </template>
 
 <script>
-import router from '../router'
+import router from '../router';
 
 export default {
   name: 'LoadImage',
   methods: {
     loadImage () {
-      this.$refs.file_input.click()
+      this.$refs.file_input.click();
     },
     loadFile () {
-      let file = this.$refs.file_input.files[0]
-      let reader = new FileReader()
+      let file = this.$refs.file_input.files[0];
+      let reader = new FileReader();
 
       reader.onloadend = () => {
-        this.$store.commit('setImage', reader.result)
-        router.push('addMap')
-      }
+        this.$store.commit('setImage', reader.result);
+        this.$store.commit('setImageLoad');
+        router.push('addMap');
+      };
 
       if (file) {
-        let extension = file.name.split('.').pop().toLowerCase()
-        let isSuccess = this.fileExtensions.indexOf(extension) > -1
+        let extension = file.name.split('.').pop().toLowerCase();
+        let isSuccess = this.fileExtensions.indexOf(extension) > -1;
 
         if (isSuccess) {
-          reader.readAsDataURL(file)
+          reader.readAsDataURL(file);
         } else {
-          this.alert = !this.alert
+          this.alert = !this.alert;
         }
       }
     }
@@ -56,9 +57,9 @@ export default {
     return {
       fileExtensions: ['jpg', 'jpeg', 'png', 'bmp'],
       alert: false
-    }
+    };
   }
-}
+};
 </script>
 
 <style scoped>
