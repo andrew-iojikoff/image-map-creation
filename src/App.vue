@@ -17,49 +17,49 @@
       </v-toolbar>
       <v-content>
         <v-container fluid align-center justify-center fill-height>
-            <router-view/>
+          <router-view/>
         </v-container>
       </v-content>
     </v-app>
   </div>
 </template>
 <script>
-import router from './router';
-import { store } from './store';
-import Vue from 'vue';
-import { EventBus } from './event-bus.js';
+  import router from './router';
+  import {store} from './store';
+  import Vue from 'vue';
+  import {EventBus} from './event-bus.js';
 
-//router.beforeEach((to, from, next) => {
-//  console.log();
-//  next();
-//});
+  //router.beforeEach((to, from, next) => {
+  //  console.log();
+  //  next();
+  //});
 
-export default {
-  name: 'App',
-  data () {
-    return {
-      btnState: {
-        addRegion: false,
-        selectRegion: false,
-        saveAll: false
+  export default {
+    name: 'App',
+    data() {
+      return {
+        btnState: {
+          addRegion: false,
+          selectRegion: false,
+          saveAll: false
+        }
       }
-    }
-  },
-  methods: {
-    addRegion: function () {
-      this.$refs.container.classList.add('editeModeStyle');
-      this.modManage('addRegion');
-      store.commit('setCurrentMod', 'ADD_REGION');
-      EventBus.$emit('addRegion');
     },
-    modManage: function (mod = 'default') {
-      if(!mod){
-         return store.state.currentMod;
-      }
-      let currenMod = store.state.currentMod;
-      let isImageLoad = store.state.isImageLoad;
+    methods: {
+      addRegion: function () {
+        this.$refs.container.classList.add('editeModeStyle');
+        this.modManage('addRegion');
+        store.commit('setCurrentMod', 'ADD_REGION');
+        EventBus.$emit('addRegion');
+      },
+      modManage: function (mod = 'default') {
+        if (!mod) {
+          return store.state.currentMod;
+        }
+        let currenMod = store.state.currentMod;
+        let isImageLoad = store.state.isImageLoad;
 
-      let selectMod = {
+        let selectMod = {
           'addImage': () => {
             this.btnState.addRegion = true;
           },
@@ -72,21 +72,23 @@ export default {
             this.btnState.selectRegion = false;
             this.btnState.addPoint = false;
           }
-      };
-      return selectMod[mod]();
+        };
+        return selectMod[mod]();
+      }
     }
-  }
-};
+  };
 </script>
 
 <style>
-  .theme--light .icon{
+  .theme--light .icon {
     color: rgba(0, 0, 0, 0.87);
   }
-  .editeModeStyle .application{
+
+  .editeModeStyle .application {
     background-color: #c2c2c2;
   }
-  .editeModeStyle .canvas{
+
+  .editeModeStyle .canvas {
     background-color: rgba(255, 255, 255, .25);
     cursor: crosshair;
   }

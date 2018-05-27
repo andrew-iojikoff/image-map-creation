@@ -80,16 +80,17 @@ export default {
 </script>
 <style scoped>
   .canvas{
-    position: absolute;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
+    position: absolute;
   }
   .img-map{
-    margin-top: 5px;
+    /*margin-top: 5px;*/
+    display: inline-block;
   }
-  .img-container{
-    height: auto;
-    display: flex;
-  }
+  /*.img-container{*/
+    /*height: auto;*/
+    /*width: auto;*/
+  /*}*/
 </style>
